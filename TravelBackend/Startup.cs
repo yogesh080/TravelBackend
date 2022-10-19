@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RepoLayer.Interfaces;
+using RepoLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +36,8 @@ namespace TravelBackend
             services.AddControllers();
 
 
-            services.AddTransient<IUserRL, UserRL>();
-            services.AddTransient<IUserBL, UserBL>();
+            services.AddTransient<IAddStateRL, AddStateRL>();
+            services.AddTransient<IAddStateBL, AddStateBL>();
 
 
             services.AddSwaggerGen();

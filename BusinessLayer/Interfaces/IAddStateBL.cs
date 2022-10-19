@@ -1,10 +1,13 @@
-﻿using System;
+﻿using CommonLayer.AddStateModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLayer.Interfaces
 {
-    internal interface IAddStateBL
+    public interface IAddStateBL
     {
+        public AddStateModel AddState(AddStateModel addstatemodel);
+
     }
 }

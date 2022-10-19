@@ -1,4 +1,4 @@
-﻿using CommonLayer.UserModel;
+﻿
 using Microsoft.Extensions.Configuration;
 using RepoLayer.Interfaces;
 using System;
@@ -25,7 +25,7 @@ namespace RepoLayer.Services
             try
             {
                 using SqlConnection connection = new SqlConnection(configuration["ConnectionString:TravelDB"]);
-                SqlCommand cmd = new SqlCommand("spUserRegister", connection)
+                SqlCommand cmd = new SqlCommand("spAddState", connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
