@@ -16,7 +16,7 @@ namespace TravelBackend.Controllers
             this.stateBL = stateBL;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("Addstate")]
         public ActionResult AddState(AddStateModel addstatemodel)
         {
             try
