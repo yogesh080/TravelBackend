@@ -2,6 +2,8 @@ Create DataBase TravelDB;
 
 use TravelDB
 
+select * from UserInfo
+
 Create Table UserInfo(
 UserId int Identity (1,1) Primary Key,
 FullName varchar(200) Not Null,

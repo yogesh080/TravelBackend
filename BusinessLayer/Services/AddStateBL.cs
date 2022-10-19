@@ -1,5 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
-using CommonLayer.UserModel;
+using CommonLayer.AddStateModel;
 using RepoLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,25 +7,26 @@ using System.Text;
 
 namespace BusinessLayer.Services
 {
-    public class UserBL : IUserBL
+    public class AddStateBL : IAddStateBL
+        
     {
-
-        private readonly IUserRL userRL;
-        public UserBL(IUserRL userRL)
+        private readonly IAddStateRL stateRL;
+        public AddStateBL(IAddStateRL stateRL)
         {
-            this.userRL = userRL;
+            this.stateRL = stateRL;
         }
-        public UserDataModel Register(UserDataModel usermodel)
+
+        public  AddStateModel AddState( AddStateModel addstatemodel)
         {
             try
             {
-                return userRL.Register(usermodel);
+                return stateRL.AddState(addstatemodel);
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
-
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CommonLayer.AddStateModel
+{
+    public class AddStateModel
+    {
+        public string StateName { get; set; }
+        public string AboutState { get; set; }
+        public string StateImage { get; set; }
+
+
+    }
+}

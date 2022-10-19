@@ -1,24 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommonLayer.UserModel;
+using Microsoft.Extensions.Configuration;
+using RepoLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
-using CommonLayer.UserModel;
+using CommonLayer.AddStateModel;
 
-namespace RepoLayer.Interfaces
+namespace RepoLayer.Services
 {
-    public class UserRL:IUserRL
+    public class AddStateRL: IAddStateRL
     {
         private readonly IConfiguration configuration;
         private readonly IConfiguration _AppSetting;
-        public UserRL(IConfiguration configuration, IConfiguration _AppSetting)
+        public AddStateRL(IConfiguration configuration, IConfiguration _AppSetting)
         {
             this.configuration = configuration;
             this._AppSetting = _AppSetting;
         }
 
-        public UserDataModel Register(UserDataModel usermodel)
+        public AddStateModel AddState(AddStateModel addstatemodel)
         {
             try
             {
@@ -28,10 +30,9 @@ namespace RepoLayer.Interfaces
                     CommandType = CommandType.StoredProcedure
                 };
 
-                cmd.Parameters.AddWithValue("@FullName", usermodel.FullName);
-                cmd.Parameters.AddWithValue("@Email", usermodel.Email);
-                cmd.Parameters.AddWithValue("@Password", usermodel.Password);
-                cmd.Parameters.AddWithValue("@MobileNumber", usermodel.MobileNumber);
+                cmd.Parameters.AddWithValue("@StateName", addstatemodel.StateName);
+                cmd.Parameters.AddWithValue("@AboutState", addstatemodel.AboutState);
+                cmd.Parameters.AddWithValue("@StateImage", addstatemodel.StateImage);
 
                 connection.Open();
                 var result = cmd.ExecuteNonQuery();
@@ -39,7 +40,7 @@ namespace RepoLayer.Interfaces
 
                 if (result != 0)
                 {
-                    return usermodel;
+                    return addstatemodel;
                 }
                 else
                 {
@@ -54,4 +55,5 @@ namespace RepoLayer.Interfaces
 
         }
     }
+
 }
