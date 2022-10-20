@@ -35,9 +35,10 @@ namespace TravelBackend.Controllers
             }
         }
 
+
         [HttpGet("getAllState")]
         public ActionResult GetallState()
-        {
+        {   
             try
             {
                 var state = this.stateBL.GetallState();
@@ -47,10 +48,9 @@ namespace TravelBackend.Controllers
                 }
                 return this.BadRequest(new { success = false, message = "State Details Could Not Be Fetched" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return this.BadRequest(new { success = false, message = "State Details Could Not Be Fetched "+ex.ToString()});
             }
         }
 
