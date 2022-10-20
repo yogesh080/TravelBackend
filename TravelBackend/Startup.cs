@@ -96,13 +96,13 @@ namespace TravelBackend
                 };
             });
 
-            //services.AddCors(option =>
-            //{
-            //    option.AddDefaultPolicy(builder =>
-            //    {
-            //        builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
-            //    });
-            //});
+            services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,6 +125,8 @@ namespace TravelBackend
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
