@@ -3,6 +3,7 @@ using CommonLayer.AddStateModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace TravelBackend.Controllers
 {
@@ -33,5 +34,25 @@ namespace TravelBackend.Controllers
                 throw ex;
             }
         }
+
+        [HttpGet("getAllState")]
+        public ActionResult GetallState()
+        {
+            try
+            {
+                var state = this.stateBL.GetallState();
+                if (state != null)
+                {
+                    return this.Ok(new { success = true, message = "state Details Fetched Successfully", data = state });
+                }
+                return this.BadRequest(new { success = false, message = "State Details Could Not Be Fetched" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

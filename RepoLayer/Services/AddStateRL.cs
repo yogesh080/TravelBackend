@@ -10,7 +10,7 @@ using CommonLayer.AddStateModel;
 
 namespace RepoLayer.Services
 {
-    public class AddStateRL: IAddStateRL
+    public class AddStateRL : IAddStateRL
     {
         private readonly IConfiguration configuration;
         private readonly IConfiguration _AppSetting;
@@ -55,6 +55,50 @@ namespace RepoLayer.Services
             }
 
         }
-    }
 
+        public List<GetStateModel> GetallState()
+        {
+            List<GetStateModel> result = new List<GetStateModel>();
+            using SqlConnection connection = new SqlConnection(configuration["ConnectionString:TravelDB"]);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("spGetAllState", connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        GetStateModel model = new GetStateModel
+                        {
+                            StateId = reader["StateId"] == DBNull.Value ? default : reader.GetInt32("StateId"),
+                            StateName = reader["StateName"] == DBNull.Value ? default : reader.GetString("StateName"),
+                            AboutState = reader["AboutState"] == DBNull.Value ? default : reader.GetString("AboutState"),
+                            StateImage = reader["StateImage"] == DBNull.Value ? default : reader.GetString("StateImage")
+                        };
+                        result.Add(model);
+                    }
+
+                    return result;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+        }
+    }
 }
+
+

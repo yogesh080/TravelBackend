@@ -8,6 +8,8 @@ namespace BusinessLayer.Interfaces
     public interface IAddStateBL
     {
         public AddStateModel AddState(AddStateModel addstatemodel);
+        public List<GetStateModel> GetallState();
+
 
     }
 }

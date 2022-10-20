@@ -8,6 +8,8 @@ namespace RepoLayer.Interfaces
     public interface IAddStateRL
     {
         public AddStateModel AddState(AddStateModel addstatemodel);
+        public List<GetStateModel> GetallState();
+
 
     }
 }

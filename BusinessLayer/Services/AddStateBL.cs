@@ -28,5 +28,19 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+
+        public List<GetStateModel> GetallState()
+        {
+            try
+            {
+                return stateRL.GetallState();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
